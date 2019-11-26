@@ -11,7 +11,21 @@ export default class Song {
   }
 
   get Template() {
+    /*html*/
     return `
+    <div class="card" style="width: 18rem;">
+  <img src='${this.albumArt}' class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">${this.title}</h5>
+    <h4 class="card-text">${this.artist}</h4>
+    <audio controls preload="none" class="">
+    <source src='${this.preview}' type="audio/mpeg">
+    
+</audio>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+
 
         `;
   }
