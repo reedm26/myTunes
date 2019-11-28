@@ -10,7 +10,13 @@ function _drawResults() {
 }
 
 /**Draws the Users saved songs to the page */
-function _drawPlaylist() {}
+function _drawPlaylist() {
+  let playlistTemplate = "";
+  store.State.songs.forEach(
+    playlist => (playlistTemplate += playlist.playlistTemplate)
+  );
+  document.querySelector("#playlist").innerHTML = playlistTemplate;
+}
 
 //Public
 export default class SongsController {
