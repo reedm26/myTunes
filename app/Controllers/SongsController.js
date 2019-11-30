@@ -12,7 +12,7 @@ function _drawResults() {
 /**Draws the Users saved songs to the page */
 function _drawPlaylist() {
   let playlistTemplate = "";
-  store.State.songs.forEach(
+  store.State.playlist.forEach(
     playlist => (playlistTemplate += playlist.playlistTemplate)
   );
   document.querySelector("#playlist").innerHTML = playlistTemplate;
