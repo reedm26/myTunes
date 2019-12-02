@@ -52,6 +52,14 @@ class SongsService {
    * @param {string} id
    */
   addSong(id) {
+    _sandBox
+      .post(id)
+      .then(res => {
+        this.getMySongs();
+      })
+      .catch(err => {
+        console.error(err);
+      });
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
   }

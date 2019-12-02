@@ -43,7 +43,17 @@ export default class SongsController {
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
-  addSong(id) {}
+  addSong(event) {
+    event.preventDefault();
+    let formData = event.target;
+    let newSong = {
+      albumArt: formData.albumArt.value,
+      title: formData.title.value,
+      artist: formData.artist.value
+    };
+    SongService.addSong(newSong);
+    formData.reset();
+  }
 
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server
