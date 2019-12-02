@@ -39,7 +39,8 @@ class SongsService {
       .get()
       .then(res => {
         //TODO What are you going to do with this result
-        let results = res.results.map(rawData => new Song(rawData));
+        let results = res.data.data.map(rawData => new Song(rawData));
+        store.commit("playlist", results);
       })
       .catch(error => {
         throw new Error(error);
@@ -52,14 +53,20 @@ class SongsService {
    * @param {string} id
    */
   addSong(id) {
+    debugger;
+    let newSong = store.State.songs.find(s => s._id == id);
+
     _sandBox
-      .post(id)
+      .post("", newSong)
       .then(res => {
-        this.getMySongs();
+        let playlist = store.State.playlist;
+        playlist.push(newSong);
+        store.commit("playlist", playlist);
       })
       .catch(err => {
         console.error(err);
       });
+    console.log(store.State.playlist);
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
   }
@@ -70,6 +77,16 @@ class SongsService {
    * @param {string} id
    */
   removeSong(id) {
+    let delSong = store.State.songs.findIndex(s => s._id == id);
+    _sandBox
+      .delete(id)
+      .then(res => {
+        console.log(res);
+        this.getMySongs();
+      })
+      .catch(err => {
+        console.error(err);
+      });
     //TODO Send the id to be deleted from the server then update the store
   }
 }

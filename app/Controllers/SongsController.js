@@ -11,11 +11,11 @@ function _drawResults() {
 
 /**Draws the Users saved songs to the page */
 function _drawPlaylist() {
-  let playlistTemplate = "";
+  let resulteTemplate = "";
   store.State.playlist.forEach(
-    playlist => (playlistTemplate += playlist.playlistTemplate)
+    song => (resulteTemplate += song.playlistTemplate)
   );
-  document.querySelector("#playlist").innerHTML = playlistTemplate;
+  document.querySelector("#playlist").innerHTML = resulteTemplate;
 }
 
 //Public
@@ -23,6 +23,8 @@ export default class SongsController {
   constructor() {
     console.log("Hello from car controller");
     store.subscribe("songs", _drawResults);
+    store.subscribe("playlist", _drawPlaylist);
+
     _drawResults();
 
     //TODO Don't forget to register your subscribers
@@ -43,21 +45,17 @@ export default class SongsController {
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
-  addSong(event) {
+  addSong(id) {
+    debugger;
     event.preventDefault();
-    let formData = event.target;
-    let newSong = {
-      albumArt: formData.albumArt.value,
-      title: formData.title.value,
-      artist: formData.artist.value
-    };
-    SongService.addSong(newSong);
-    formData.reset();
+    SongService.addSong(id);
   }
 
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server
    * @param {string} id
    */
-  removeSong(id) {}
+  removeSong(id) {
+    SongService.removeSong(id);
+  }
 }
