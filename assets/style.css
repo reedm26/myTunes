@@ -1,0 +1,7 @@
+.fix {
+  position: fixed;
+  /* position: absoulute; */
+}
+.image-preview {
+  position: relative;
+}

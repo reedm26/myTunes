@@ -12,43 +12,67 @@
     <title>myTunes</title>
   </head>
 
-  <body class="container-fluid bg-dark">
-    <header class="row">
+  <body>
+    <header class="container-fluid bg-dark fix">
+    <div class="row">
+
       <div class="col-12 bannerStyle text-light text-center">
         <h1>myTunes</h1>
       </div>
       <div class="offset-8 col-4">
         <form onsubmit="app.songsController.search(event)">
-          <input
+            <input
             type="text"
             class="form-control"
             name="query"
             placeholder="Search For Music"
-          />
-          <button
+            />
+            <button
             class="btn btn-success mt-1 form-control text-light"
             type="submit"
-          >
+            >
             Search
           </button>
         </form>
       </div>
+    </div>
     </header>
-
-    <main class="row">
-      <div class="col-6">
-        <h3 class="text-center text-light">Search Results</h3>
-        <div id="songs" class="row m-0">
-          <!-- template to generate -->
-        </div>
+<main class="container">
+  
+  <div class="row">
+    <div class="col-12 col-lg-6 bg-primary">
+      <h3 class="text-center text-light">Search Results</h3>
+      <div id="songs" class="row m-0">
+        <!-- template to generate -->
       </div>
-      <div class="col-6">
-        <h3 class="text-center text-light">Playlist</h3>
-        <div class="row m-0" id="playlist">
+    </div>
+    <div class="col-12 col-lg-6 bg-warning">
+      <h3 class="text-center text-light">Playlist</h3>
+      <div class="row m-0" id="playlist">
+        <!-- this is NEW template -->
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="${this.albumArt}" class="card-img" alt="..." />
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">${this.title}</h5>
+                  <p class="card-text">
+                    ${this.artist}
+                  </p>
+                  <p class="card-text">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
           <!-- template for playlist -->
         </div>
       </div>
-    </main>
+    </div>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"
